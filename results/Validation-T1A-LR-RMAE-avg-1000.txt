@@ -1,0 +1,9 @@
+EM             1.19731
+HDy-30b        0.15273
+HDy-40b        0.13941
+HDy-50b        0.14917
+PDFy-30b-topsoe0.13542
+PDFy-40b-topsoe0.13225
+PDFy-50b-topsoe0.13112
+CDFy-100b-L1   0.20172
+EDy            0.21878
