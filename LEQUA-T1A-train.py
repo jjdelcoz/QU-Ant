@@ -69,7 +69,6 @@ def main(path, dataset, estimator_name, n_bags=1000, bag_inicial=0, master_seed=
                    'PDFy-30b-topsoe',
                    'PDFy-40b-topsoe',
                    'PDFy-50b-topsoe',
-                   'CDFy-100b-L1', 
                    'EDy',
                   ]
 
@@ -177,10 +176,6 @@ def main(path, dataset, estimator_name, n_bags=1000, bag_inicial=0, master_seed=
     pdfy_topsoe50 = DFy(distribution_function='PDF', distance=topsoe, n_bins=50, bin_strategy='equal_count')
     pdfy_topsoe50.fit(X_train, y_train, predictions_train=probs_train)
     print('PDFy-topsoe 50b fitted')
-    #  CDFy-L1
-    cdfy_l1 = DFy(distribution_function='CDF', n_bins=100, distance='L1', bin_strategy='equal_count')
-    cdfy_l1.fit(X_train, y_train, predictions_train=probs_train)
-    print('CDF-L1 fitted')
     #  EDy
     edy = EDy()
     edy.fit(X_train, y_train, predictions_train=probs_train)
@@ -211,7 +206,6 @@ def main(path, dataset, estimator_name, n_bags=1000, bag_inicial=0, master_seed=
             pdfy_topsoe30.predict(X=None, predictions_test=probs_test),
             pdfy_topsoe40.predict(X=None, predictions_test=probs_test),
             pdfy_topsoe50.predict(X=None, predictions_test=probs_test),
-            cdfy_l1.predict(X=None, predictions_test=probs_test),
             edy.predict(X=None, predictions_test=probs_test),
         ]
         for n_method, prev_pred in enumerate(prev_preds):

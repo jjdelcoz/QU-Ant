@@ -8,7 +8,7 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics.pairwise import euclidean_distances
 
 from em import EM
-from df import HDy, DFy
+from df import HDy
 from energy import EDy
 from cross_validation import CV_estimator
 from metrics import l1, l2
@@ -55,7 +55,6 @@ def main(path, dataset, estimator_name, n_bags=1000, bag_inicial=0, master_seed=
                    'HDy-4b', 
                    'HDy-8b', 
                    'HDy-16b',
-                   'CDFy-100b-L1', 
                    'EDy',
                   ]
 
@@ -109,10 +108,6 @@ def main(path, dataset, estimator_name, n_bags=1000, bag_inicial=0, master_seed=
     hdy16 = HDy(n_bins=16, bin_strategy='equal_width')
     hdy16.fit(X_train, y_train, predictions_train=probs_train)
     print('HDy fitted')
-    #  CDFy-L1
-    cdfy_l1 = DFy(distribution_function='CDF', n_bins=100, distance='L1', bin_strategy='equal_count')
-    cdfy_l1.fit(X_train, y_train, predictions_train=probs_train)
-    print('CDF-L1 fitted')
     #  EDy
     edy = EDy()
     edy.fit(X_train, y_train, predictions_train=probs_train)
@@ -140,7 +135,6 @@ def main(path, dataset, estimator_name, n_bags=1000, bag_inicial=0, master_seed=
             hdy4.predict(X=None, predictions_test=probs_test),
             hdy8.predict(X=None, predictions_test=probs_test),
             hdy16.predict(X=None, predictions_test=probs_test),
-            cdfy_l1.predict(X=None, predictions_test=probs_test),
             edy.predict(X=None, predictions_test=probs_test),
         ]
         for n_method, prev_pred in enumerate(prev_preds):
